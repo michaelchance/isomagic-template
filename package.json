@@ -1,0 +1,18 @@
+{
+  "name": "isomagic-template",
+  "version": "0.0.1",
+  "description": "An extension for isomagic that loads templates from files and can translate them through the use of a tlc command",
+  "main": "template.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "isomagic",
+    "tlc",
+    "isomorphic",
+    "express",
+    "template"
+  ],
+  "author": "michael chance",
+  "license": "MIT"
+}
