@@ -30,9 +30,9 @@
 					var data = context.args('data');
 					// console.log('translating '+templateid);
 					var r = false;
-					if(templateid){
+					if(templateid && templates[templateid]){
 						var $tag = templates[templateid].clone();
-						r = context.tlc.run($tag,data);
+						r = context.tlc.run($tag,data,context.options);
 						var html = "";
 						if(_app.server()){
 							html = require('cheerio').html($tag);
