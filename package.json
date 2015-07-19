@@ -1,6 +1,6 @@
 {
   "name": "isomagic-template",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "An extension for isomagic that loads templates from files and can translate them through the use of a tlc command",
   "main": "template.js",
   "scripts": {
