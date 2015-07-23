@@ -24,15 +24,39 @@
 	var extension = function(_app, config){
 		var templates = {};
 		var r = {
+			u : {
+				renderTemplate : function(templateid, data, options){
+					var $tag = templates[templateid].clone();
+					var r = _app.tlc.run($tag,data,options);
+					var html = "";
+					if(_app.server()){
+						html = require('cheerio').html($tag);
+						}
+					else {
+						html = $tag;
+						}
+					if(r || options.forcesuccess){
+						return html;
+						}
+					else {
+						return null;
+						}
+					}
+				},
 			tlc : {
 				translate : function(context){
+					// console.log('translate#template');
 					var templateid = context.args('templateid');
 					var data = context.args('data');
-					// console.log('translating '+templateid);
+					if(!templateid){
+						console.log(context.focus());
+						}
 					var r = false;
 					if(templateid && templates[templateid]){
 						var $tag = templates[templateid].clone();
+						// console.log($tag.html());
 						r = context.tlc.run($tag,data,context.options);
+						// console.log($tag.html());
 						var html = "";
 						if(_app.server()){
 							html = require('cheerio').html($tag);
@@ -41,6 +65,9 @@
 							html = $tag;
 							}
 						context.focus(html);
+						}
+					if(context.args('forcesuccess')){
+						r=true;
 						}
 					return r;
 					}
@@ -73,7 +100,7 @@
 					});
 				}
 			}
-		
+		r.templates = templates;
 		return r;
 		}
 	// Only Node.JS has a process variable that is of [[Class]] process 
